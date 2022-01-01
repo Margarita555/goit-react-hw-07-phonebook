@@ -1,10 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit';
 import contactsReducer from './contacts-reducer';
 
+const middleware = getDefaultMiddleware =>
+  getDefaultMiddleware({
+    serializableCheck: {
+      // Ignore these action types
+      ignoredActions: ['contacts/fetchContactsError'],
+      // Ignore these field paths in all actions
+      ignoredActionPaths: ['payload'],
+      // Ignore these paths in the state
+      ignoredPaths: ['payload'],
+    },
+  });
+
 const store = configureStore({
   reducer: {
     contacts: contactsReducer,
   },
+  middleware,
 });
 
 export default store;
