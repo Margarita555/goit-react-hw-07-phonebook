@@ -22,7 +22,7 @@ export default function ContactForm() {
       alert(`${name} is already in contacts`);
       return;
     }
-    dispatch(contactsOperations.addContact(name, phone));
+    dispatch(contactsOperations.addContact({ name, phone }));
     resetState();
   };
 

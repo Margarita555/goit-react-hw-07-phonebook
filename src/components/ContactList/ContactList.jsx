@@ -20,6 +20,7 @@ const ContactList = () => {
 
   useEffect(() => {
     dispatch(contactsOperations.fetchContacts());
+    // dispatch(contactsOperations.deleteContact());
   }, [dispatch]);
 
   const getVisibleContacts = () => {
@@ -34,21 +35,23 @@ const ContactList = () => {
     <>
       {loading && <Spinner />}
       {error && <h2>Oops, something went wrong. Try again later</h2>}
-      <ul>
-        {visibleContacts.map(({ phone, name, id }) => (
-          <li key={nanoid()} className={s.item}>
-            <span className={s.name}>{name}</span>:
-            <span className={s.number}>{phone}</span>
-            <button
-              className={s.btn}
-              onClick={() => dispatch(contactsOperations.deleteContact(id))}
-              type="button"
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      {contacts.length > 0 && (
+        <ul>
+          {visibleContacts.map(({ phone, name, id }) => (
+            <li key={nanoid()} className={s.item}>
+              <span className={s.name}>{name}</span>:
+              <span className={s.number}>{phone}</span>
+              <button
+                className={s.btn}
+                onClick={() => dispatch(contactsOperations.deleteContact(id))}
+                type="button"
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };
