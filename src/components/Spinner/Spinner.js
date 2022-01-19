@@ -8,8 +8,8 @@ const Spinner = () => {
       className={s.loader}
       type="BallTriangle"
       color="rgb(11, 159, 196)"
-      height={50}
-      width={50}
+      height={40}
+      width={40}
     />
   );
 };
